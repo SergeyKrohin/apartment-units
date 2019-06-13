@@ -1,0 +1,5 @@
+@import "../../styles/shared/_apartment-list.scss";
+
+.wrapper {
+	@extend .apartment-list;
+}

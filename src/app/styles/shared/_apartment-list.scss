@@ -4,12 +4,8 @@ $list_margin: 20px;
 $line_height: 72px;
 $line_padding: 10px;
 
-@font-face {
-	font-family: PokemonSolid;
-	src: url(../../../app/assets/fonts/PokemonSolid.ttf);
-}
 
-.pokemon-list {
+.apartment-list {
 
 	.filter {
 		vertical-align: 2px;
@@ -27,11 +23,10 @@ $line_padding: 10px;
 		margin-left: 0;
 		width: 230px;
 		display: inline-block;
-		font-family: PokemonSolid;
-		color: #FECC07;
+		font-family: Verdana;
+		color: #357ca2;
 		font-size: 30px;
 		text-stroke: 1px #3B69AC;	
-		-webkit-text-stroke: 1px #3B69AC;		
 	}
 
 	.list {
@@ -41,7 +36,7 @@ $line_padding: 10px;
 		li {
 			height: $line_height;
 			padding: $line_padding;
-			.pokemon-name {
+			.apartmet-name {
 				display: inline-block;
 				width: 245px;
 				text-transform: capitalize;
