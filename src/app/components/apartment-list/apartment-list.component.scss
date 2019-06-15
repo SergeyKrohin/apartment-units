@@ -1,10 +1,12 @@
 $title_line_height: 36px;
 $margin_horizontal: 15px;
 $title_margin_vertical: 30px;
+$list_padding: 0 20px;
 
 .wrapper {
 
 	.header {
+		padding: $list_padding;
 		.title {
 			font-weight: 400;
 			margin: $title_margin_vertical $margin_horizontal;
@@ -16,6 +18,7 @@ $title_margin_vertical: 30px;
 		}
 	}
 	.apartment-list {
+		padding: $list_padding;
 		height: calc(100% - #{$title_margin_vertical * 2 + $title_line_height});
 		overflow-y: auto;
 		.apartment-list-item {

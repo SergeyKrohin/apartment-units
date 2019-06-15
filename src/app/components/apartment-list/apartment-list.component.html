@@ -6,7 +6,7 @@
 	<div class="apartment-list">
 		<!--<li class="list-group-item" *ngFor="let apartment of apartmentList | filter:term:propName">-->
 		<div class="apartment-list-item" *ngFor="let apartment of apartmentList">
-			<apartment-list-item [apartment]="apartment"></apartment-list-item>
+			<apartment-list-item (click)="apartmentSelected(apartment)" [apartment]="apartment"></apartment-list-item>
 		</div>
 	</div>
 </span>

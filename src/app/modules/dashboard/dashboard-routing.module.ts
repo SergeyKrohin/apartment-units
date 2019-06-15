@@ -10,7 +10,7 @@ const routes: Routes = [
 	component: ApartmentListComponent
   },
   {
-    path: 'list/:city',
+    path: 'detail/:id',
 	component: ApartmentDetailsComponent,
 	resolve: {
 		evolutionChain: ApartmentDetailsResolver
