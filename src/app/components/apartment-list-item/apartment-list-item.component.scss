@@ -1,0 +1,52 @@
+.item {
+	border: 1px solid #e2e5e8;
+	cursor: pointer;
+	.img-wrapper {
+	    width: 100%;
+		padding-bottom: 67%;
+		position: relative;
+			img {
+				max-width: 100%;
+				max-height: 100%;
+				height: auto;
+				z-index: 1;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: 0 auto;
+			}
+	}
+	.meta {
+	    padding: 0 10px;
+		.title {
+			color: #357ca2;
+			font-weight: 400;
+		}
+		.address {
+		    font-weight: 800;
+			font-weight: 600;
+			margin-bottom: 20px;
+		}
+		.group {
+			font-size: 0; //removes the gap between the sections
+			margin-bottom: 10px;
+			& > span {
+				display: inline-block;
+				width: 50%;
+				font-size: 16px;
+			}
+		}
+		.actions {
+			.mail {
+				i {
+					color: #357ca2;
+				}
+			}
+			.favorites, .mail {
+				float: right;
+				margin: 2px;
+			}
+		}
+	}
+}
+

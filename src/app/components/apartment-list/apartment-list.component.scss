@@ -1,5 +1,27 @@
-@import "../../styles/shared/_apartment-list.scss";
+$title_line_height: 36px;
+$margin_horizontal: 15px;
+$title_margin_vertical: 30px;
 
 .wrapper {
-	@extend .apartment-list;
+
+	.header {
+		.title {
+			font-weight: 400;
+			margin: $title_margin_vertical $margin_horizontal;
+			display: inline-block;
+			font-family: Verdana;
+			color: #357ca2;
+			line-height: 36px;
+			font-size: 30px;
+		}
+	}
+	.apartment-list {
+		height: calc(100% - #{$title_margin_vertical * 2 + $title_line_height});
+		overflow-y: auto;
+		.apartment-list-item {
+			display: inline-block;
+			width: calc((100% / 3) - #{$margin_horizontal * 2});
+			margin: $margin_horizontal;
+		}
+	}
 }

@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApartmentListComponent } from '../../components/apartment-list/apartment-list.component';
+import { ApartmentDetailsComponent } from '../../components/apartment-details/apartment-details.component';
+import { ApartmentDetailsResolver } from '../../services/apartment-details-resolver/apartment-details.resolver';
 
 const routes: Routes = [
   {
-    path: 'apartment-list',
+    path: 'list',
 	component: ApartmentListComponent
   },
   {
+    path: 'list/:city',
+	component: ApartmentDetailsComponent,
+	resolve: {
+		evolutionChain: ApartmentDetailsResolver
+	}
+  },
+  {
     path: '**',
-	redirectTo: '/apartment-list'
+	redirectTo: '/list'
   }
 ];
 

@@ -1,7 +1,6 @@
 import { HttpService } from '../../services/http/http.service';
 import { DataService } from '../../services/data/data.service';
 import { Component, OnInit } from '@angular/core'; 
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'apartment-list',
@@ -11,17 +10,20 @@ import { Router } from '@angular/router';
 
 export class ApartmentListComponent implements OnInit {
 	
-	constructor(private dataService: DataService, private router: Router){}
+	constructor(private dataService: DataService){}
 
 	public apartmentList = [];
-	public term = '';
-	public propName = 'name';
-	private subscriptions = [];
-	private listLimit = 100;
-
+	//public term = '';
+	//public propName = 'name';
+	public apartmentListSub;
 
 	ngOnInit() {
+		this.apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
+			this.apartmentList = result.data;
+		});
 	}
 	
-	ngOnDestroy() {}
+	ngOnDestroy() {
+		this.apartmentListSub.unsubscribe();
+	}
 }
