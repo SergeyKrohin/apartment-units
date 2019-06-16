@@ -2,6 +2,8 @@ $title_line_height: 36px;
 $margin_horizontal: 15px;
 $title_margin_vertical: 30px;
 $list_padding: 0 20px;
+$screen_max_width: 1820px;
+$screen_breakpoint_diff: 350px;
 
 .wrapper {
 
@@ -23,8 +25,36 @@ $list_padding: 0 20px;
 		overflow-y: auto;
 		.apartment-list-item {
 			display: inline-block;
-			width: calc((100% / 3) - #{$margin_horizontal * 2});
+			width: calc((100% / 5) - #{$margin_horizontal * 2});
 			margin: $margin_horizontal;
+		}
+	}
+	@media screen and (max-width: #{$screen_max_width}) {
+		.apartment-list {
+			.apartment-list-item {
+				width: calc((100% / 4) - #{$margin_horizontal * 2});
+			}
+		}
+	}
+	@media screen and (max-width: #{$screen_max_width - $screen_breakpoint_diff}) {
+		.apartment-list {
+			.apartment-list-item {
+				width: calc((100% / 3) - #{$margin_horizontal * 2});
+			}
+		}
+	}
+	@media screen and (max-width: #{$screen_max_width - $screen_breakpoint_diff * 2}) {
+		.apartment-list {
+			.apartment-list-item {
+				width: calc((100% / 2) - #{$margin_horizontal * 2});
+			}
+		}
+	}
+	@media screen and (max-width: #{$screen_max_width - $screen_breakpoint_diff * 3 - 80px}) {
+		.apartment-list {
+			.apartment-list-item {
+				width: calc(100% - #{$margin_horizontal * 2});
+			}
 		}
 	}
 }

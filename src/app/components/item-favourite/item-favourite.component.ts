@@ -18,7 +18,8 @@ export class ItemFavouriteComponent {
 		removed: 'remove from favourites'
 	};
 	
-	public toggle() {
+	public toggle(e) {
+		e.stopPropagation();
 		this.onStatusChange.emit(this.status = this.status === 'removed' ? 'added' : 'removed');
 	}
 }

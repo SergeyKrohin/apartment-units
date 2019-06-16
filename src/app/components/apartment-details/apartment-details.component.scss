@@ -1,0 +1,23 @@
+:host {
+	padding: 20px;
+	display: block;
+	.details {
+		border: 1px solid #e2e5e8;
+		width: 600px;
+		height: 400px;
+		.title {
+			color: #357ca2;
+			font-weight: 400;
+			padding: 0 10px;
+			line-height: 26px;
+		}
+		.img-wrapper {
+			height: calc(100% -36px);
+			width: inherit;
+			img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
+	}	
+}	

@@ -13,11 +13,12 @@ export class ApartmentDetailsComponent implements OnInit, OnDestroy {
 	
 	constructor(private dataService: DataService, private route: ActivatedRoute){}
 
+	public apartment;
 	private subscriptions = [];
 	
 	ngOnInit() {
 		const routeSub = this.route.data.subscribe((data) => {
-			//show details
+			this.apartment = data['apartmentDetails']; 
 		});
 		this.subscriptions.push(routeSub);
 	}

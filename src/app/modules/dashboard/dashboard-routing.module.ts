@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'detail/:id',
 	component: ApartmentDetailsComponent,
 	resolve: {
-		evolutionChain: ApartmentDetailsResolver
+		apartmentDetails: ApartmentDetailsResolver
 	}
   },
   {

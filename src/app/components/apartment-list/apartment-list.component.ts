@@ -24,7 +24,7 @@ export class ApartmentListComponent implements OnInit {
 
 	ngOnInit() {
 		this.apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
-			this.apartmentList = result.data;
+			this.apartmentList = result;
 		});
 	}
 	

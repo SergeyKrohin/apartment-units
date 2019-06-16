@@ -8,6 +8,6 @@ export class ApartmentDetailsResolver implements Resolve<any> {
 	constructor(private dataService: DataService) {}
 	                
 	resolve(route) {
-		return this.dataService.showDetailView(route.params['id']);
+		return this.dataService.getApartment(route.params['id']);
 	}
 }
