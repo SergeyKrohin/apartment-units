@@ -3,14 +3,14 @@
 		<img [src]="apartment.teaserImageUrl" />
 	</div>
 	<div class="meta">
-		<h3 class="title">{{apartment.title}}</h3>
-		<div class="address">{{address}}</div>
+		<h3 class="title text-ellipsis" [title]="apartment.title">{{apartment.title}}</h3>
+		<div class="address text-ellipsis">{{address}}</div>
 		<div class="group">
-			<span class="rooms">{{apartment.details.numberOfRooms}} rooms</span>
+			<span class="rooms">{{rooms}}</span>
 			<span class="meters">{{apartmentSize}}</span>
 		</div>
 		<div class="group">
-			<span class="floor" *ngIf="apartment.details.floor">floor {{apartment.details.floor}}</span>
+			<span class="floor" >floor {{floor}}</span>
 			<span class="price">{{price}}</span>
 		</div>
 		<div class="actions clearfix">

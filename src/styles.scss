@@ -19,3 +19,9 @@ html, body
   display: block;
   clear: both;
 }
+
+.text-ellipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

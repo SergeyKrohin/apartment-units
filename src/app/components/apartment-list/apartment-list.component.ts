@@ -1,7 +1,9 @@
 import { HttpService } from '../../services/http/http.service';
 import { DataService } from '../../services/data/data.service';
 import { Component, OnInit } from '@angular/core'; 
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
 	selector: 'apartment-list',
@@ -11,13 +13,13 @@ import { Router } from '@angular/router';
 
 export class ApartmentListComponent implements OnInit {
 	
-	constructor(private dataService: DataService, private router: Router){}
+	constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location){}
 
 	public apartmentList = [];
 	public filterPropName = 'address.city';
 	public filterTerm;
 	public citiesList = [];
-	public apartmentListSub;
+	private subscriptions = [];
 	
 	public apartmentSelected(apartment) {
 		this.router.navigate(['/detail', apartment.id]);
@@ -27,6 +29,7 @@ export class ApartmentListComponent implements OnInit {
 		if(e.target.value === 'all') {
 			this.filterTerm = undefined;	
 		} else {
+			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_').toLowerCase()}`);
 			this.filterTerm = e.target.value;	
 		}
 		
@@ -43,13 +46,22 @@ export class ApartmentListComponent implements OnInit {
 	}
 	
 	ngOnInit() {
-		this.apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
+		const routeSub = this.activatedRoute.paramMap.subscribe((params) => {
+			if(params.get("city")) {
+				this.filterTerm = params.get("city").replace(/_/g, ' ');
+			}
+		});		
+		const apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
 			this.citiesList = this.getAvailableCities(this.apartmentList);
 		});
+		this.subscriptions.push(routeSub);
+		this.subscriptions.push(apartmentListSub);
 	}
 	
 	ngOnDestroy() {
-		this.apartmentListSub.unsubscribe();
+		this.subscriptions.forEach((sub) => {
+			sub.unsubscribe();
+		});
 	}
 }

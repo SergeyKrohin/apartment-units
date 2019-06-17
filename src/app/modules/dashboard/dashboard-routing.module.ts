@@ -11,10 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'list/:city',
-	component: ApartmentDetailsComponent,
-	resolve: {
-		apartmentDetails: ApartmentDetailsResolver
-    }
+	component: ApartmentListComponent
   },
   {
     path: 'detail/:id',

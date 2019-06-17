@@ -23,13 +23,23 @@ export class ApartmentListItemComponent implements OnInit {
 	}
 	
 	public get apartmentSize() {
-		return `${this.apartment.details.size} 
-				${this.apartment.localization.areaUnit}`;
+		return this.apartment.details.size ? 
+			`${this.apartment.details.size} ${this.apartment.localization.areaUnit}` : '' ;
 	}
 	
 	public get price() {
-		return `${this.apartment.details.rent.totalRent} 
-				${this.apartment.localization.currency}`;
+		return this.apartment.details.rent.totalRent ? 
+			`${this.apartment.details.rent.totalRent} ${this.apartment.localization.currency}` : '';
+	}
+	
+	public get floor() {
+		return this.apartment.details.floor ? 
+			`floor ${this.apartment.details.floor}` : '';
+	}
+	
+	public get rooms() {
+		return this.apartment.details.numberOfRooms ? 
+			`${this.apartment.details.numberOfRooms} rooms` : '';
 	}
 	
 	public sendMail(e) {
