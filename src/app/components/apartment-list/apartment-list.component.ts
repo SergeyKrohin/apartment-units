@@ -32,11 +32,21 @@ export class ApartmentListComponent implements OnInit {
 		
 	}
 	
+	public getAvailableCities(apartmentList) {
+		const availableCities = [];
+		apartmentList.forEach(apartment => {
+			if(availableCities.indexOf(apartment.address.city)  === -1 ) {
+				availableCities.push(apartment.address.city);
+			}
+		});
+		return availableCities;
+	}
+	
 	ngOnInit() {
 		this.apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
+			this.citiesList = this.getAvailableCities(this.apartmentList);
 		});
-		this.citiesList = this.dataService.getAvailableCities();
 	}
 	
 	ngOnDestroy() {
