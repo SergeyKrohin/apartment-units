@@ -14,18 +14,29 @@ export class ApartmentListComponent implements OnInit {
 	constructor(private dataService: DataService, private router: Router){}
 
 	public apartmentList = [];
-	//public term = '';
-	//public propName = 'name';
+	public filterPropName = 'address.city';
+	public filterTerm;
+	public citiesList = [];
 	public apartmentListSub;
 	
 	public apartmentSelected(apartment) {
 		this.router.navigate(['/detail', apartment.id]);
 	}
 
+	public citySelected(e) {
+		if(e.target.value === 'all') {
+			this.filterTerm = undefined;	
+		} else {
+			this.filterTerm = e.target.value;	
+		}
+		
+	}
+	
 	ngOnInit() {
 		this.apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
 		});
+		this.citiesList = this.dataService.getAvailableCities();
 	}
 	
 	ngOnDestroy() {

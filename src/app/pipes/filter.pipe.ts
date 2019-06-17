@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import * as _ from 'lodash';
 
 @Pipe({
 	name: 'filter'
@@ -10,10 +11,9 @@ export class FilterPipe implements PipeTransform {
 		if(typeof term === 'undefined' || typeof propName === 'undefined') {
 			return items;
 		}
-		
-        return items.filter(item => {
-			return item[propName].toLowerCase().includes(term.toLowerCase());
-		});
+			
+		return _.filter(items, [propName, term]);
+	
     }
 	
 }

@@ -9,9 +9,14 @@ export class DataService {
 	constructor(private httpService: HttpService) {}
 	   
 	private url: string = 'https://let-api-test.akelius.com/api/v2/marketing';
-	
+	private cities = [
+		"Berlin",
+		"Hamburg",
+		"Frankfurt am Main"
+	];
 	private apartments = [];
 
+	// get apartments with caching
 	public getApartmentList() {
 		return Observable.create((observer:any) => {
 			if(this.apartments.length) {
@@ -29,6 +34,10 @@ export class DataService {
 		return this.getApartmentList().map(list => {
 			return list.find(item => item.id === id);
 		});
+	}
+	
+	public getAvailableCities() {
+		return this.cities;
 	}
 	
 }

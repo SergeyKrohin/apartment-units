@@ -1,11 +1,14 @@
 <span class="wrapper">
 	<div class="header">
 		<h1 class="title">Available apartments</h1>
-		<!--<input class="filter" placeholder="Filter name" type="text" [(ngModel)]="term" />-->
+		<label for="cities">City</label>
+		<select id="cities" name="cities" (change)="citySelected($event)">
+		  <option value="all">All</option>
+		  <option *ngFor="let city of citiesList" [value]="city">{{city}}</option>
+		</select>
 	</div>
 	<div class="apartment-list">
-		<!--<li class="list-group-item" *ngFor="let apartment of apartmentList | filter:term:propName">-->
-		<div class="apartment-list-item" *ngFor="let apartment of apartmentList">
+		<div class="apartment-list-item" *ngFor="let apartment of apartmentList | filter:filterTerm:filterPropName">
 			<apartment-list-item (click)="apartmentSelected(apartment)" [apartment]="apartment"></apartment-list-item>
 		</div>
 	</div>
