@@ -20,19 +20,11 @@ export class ApartmentListComponent implements OnInit {
 		private location: Location){}
 
 	public apartmentList = [];
-	public filterPropName = 'address.city';
-	public filterTerm;
-	public streetPropName = 'address.streetName';
-	public streetFilterTerm;
+	public selectedCity;
+	public selectedStreet;
 	public citiesList = [];
 	public streetList = [];
-	private subscriptions = [];
-	public result;
-	public test = 0;
-	
-	public get availableApartments() {
-		return `${this.result} available apartments`;
-	}
+	private routeSub;
 	
 	public apartmentSelected(apartment) {
 		this.router.navigate(['/detail', apartment.id]);
@@ -40,49 +32,49 @@ export class ApartmentListComponent implements OnInit {
 
 	public citySelected(e) {
 		if(e.target.value === 'all') {
-			this.filterTerm = undefined;	
+			this.location.replaceState('/list')
+			this.selectedCity = undefined;			
 		} else {
 			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_').toLowerCase()}`);
-			this.filterTerm = e.target.value;	
+			this.selectedCity = e.target.value;	
+			this.streetList = this.apartmentList.filter(apartment => (
+				apartment.address.city === e.target.value
+			)).map(apartment => apartment.address.streetName);
 		}
+		this.selectedStreet = undefined;	
 	}
 	
 	public streetSelected(e) {
 		if(e.target.value === 'all') {
-			this.filterTerm = undefined;	
+			this.selectedStreet = undefined;	
 		} else {
-			this.streetFilterTerm = e.target.value;	
+			this.selectedStreet = e.target.value;	
 		}
 	}
 	
 	public getAvailable(list, property) {
-		const availableList = [];
-		list.forEach(apartment => {
-			if(availableList.indexOf(apartment.address[property])  === -1 ) {
-				availableList.push(apartment.address[property]);
+		return list.reduce((available, apartment) => {
+			if (available.indexOf(apartment.address[property])  === -1) {
+				available.push(apartment.address[property]);
 			}
-		});
-		return availableList;
+			return available;
+		}, []); 
 	}
 	
 	ngOnInit() {
-		const routeSub = this.activatedRoute.paramMap.subscribe((params) => {
+		this.routeSub = this.activatedRoute.paramMap.subscribe((params) => {
 			if(params.get("city")) {
-				this.filterTerm = params.get("city").replace(/_/g, ' ');
+				this.selectedCity = params.get("city").replace(/_/g, ' ');
 			}
 		});		
-		const apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
+		this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
 			this.citiesList = this.getAvailable(this.apartmentList, 'city');
 			this.streetList = this.getAvailable(this.apartmentList, 'streetName');
 		});
-		this.subscriptions.push(routeSub);
-		this.subscriptions.push(apartmentListSub);
 	}
 	
 	ngOnDestroy() {
-		this.subscriptions.forEach((sub) => {
-			sub.unsubscribe();
-		});
+		this.routeSub.unsubscribe();
 	}
 }
