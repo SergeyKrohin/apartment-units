@@ -13,13 +13,26 @@ import {Location} from '@angular/common';
 
 export class ApartmentListComponent implements OnInit {
 	
-	constructor(private dataService: DataService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location){}
+	constructor(
+		private dataService: DataService, 
+		private router: Router, 
+		private activatedRoute: ActivatedRoute, 
+		private location: Location){}
 
 	public apartmentList = [];
 	public filterPropName = 'address.city';
 	public filterTerm;
+	public streetPropName = 'address.streetName';
+	public streetFilterTerm;
 	public citiesList = [];
+	public streetList = [];
 	private subscriptions = [];
+	public result;
+	public test = 0;
+	
+	public get availableApartments() {
+		return `${this.result} available apartments`;
+	}
 	
 	public apartmentSelected(apartment) {
 		this.router.navigate(['/detail', apartment.id]);
@@ -32,17 +45,24 @@ export class ApartmentListComponent implements OnInit {
 			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_').toLowerCase()}`);
 			this.filterTerm = e.target.value;	
 		}
-		
 	}
 	
-	public getAvailableCities(apartmentList) {
-		const availableCities = [];
-		apartmentList.forEach(apartment => {
-			if(availableCities.indexOf(apartment.address.city)  === -1 ) {
-				availableCities.push(apartment.address.city);
+	public streetSelected(e) {
+		if(e.target.value === 'all') {
+			this.filterTerm = undefined;	
+		} else {
+			this.streetFilterTerm = e.target.value;	
+		}
+	}
+	
+	public getAvailable(list, property) {
+		const availableList = [];
+		list.forEach(apartment => {
+			if(availableList.indexOf(apartment.address[property])  === -1 ) {
+				availableList.push(apartment.address[property]);
 			}
 		});
-		return availableCities;
+		return availableList;
 	}
 	
 	ngOnInit() {
@@ -53,7 +73,8 @@ export class ApartmentListComponent implements OnInit {
 		});		
 		const apartmentListSub = this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
-			this.citiesList = this.getAvailableCities(this.apartmentList);
+			this.citiesList = this.getAvailable(this.apartmentList, 'city');
+			this.streetList = this.getAvailable(this.apartmentList, 'streetName');
 		});
 		this.subscriptions.push(routeSub);
 		this.subscriptions.push(apartmentListSub);

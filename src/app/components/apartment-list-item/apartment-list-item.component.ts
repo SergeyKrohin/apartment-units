@@ -32,16 +32,6 @@ export class ApartmentListItemComponent implements OnInit {
 			`${this.apartment.details.rent.totalRent} ${this.apartment.localization.currency}` : '';
 	}
 	
-	public get floor() {
-		return this.apartment.details.floor ? 
-			`floor ${this.apartment.details.floor}` : '';
-	}
-	
-	public get rooms() {
-		return this.apartment.details.numberOfRooms ? 
-			`${this.apartment.details.numberOfRooms} rooms` : '';
-	}
-	
 	public sendMail(e) {
 		e.stopPropagation();
 		// send mail code goes here

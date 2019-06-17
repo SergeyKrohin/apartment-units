@@ -5,7 +5,7 @@ import { LoaderComponent } from '../../components/shared/loader/loader.component
 
 @NgModule({
 	declarations: [FilterPipe, LoaderComponent],
-	providers: [],
+	providers: [FilterPipe],
 	imports: [BrowserModule],
 	exports:[FilterPipe, LoaderComponent]
 })
