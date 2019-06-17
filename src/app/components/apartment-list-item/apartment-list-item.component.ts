@@ -13,6 +13,29 @@ export class ApartmentListItemComponent implements OnInit {
 	constructor(){}
 
 	@Input() apartment;
+	
+	public get address() {
+		const address = this.apartment.address;
+		return `${address.streetName} 
+				${address.houseNumber} 
+				${address.postalCode} 
+				${address.city}`;
+	}
+	
+	public get apartmentSize() {
+		return `${this.apartment.details.size} 
+				${this.apartment.localization.areaUnit}`;
+	}
+	
+	public get price() {
+		return `${this.apartment.details.rent.totalRent} 
+				${this.apartment.localization.currency}`;
+	}
+	
+	public sendMail(e) {
+		e.stopPropagation();
+		// send mail code goes here
+	}
 
 	ngOnInit() {
 

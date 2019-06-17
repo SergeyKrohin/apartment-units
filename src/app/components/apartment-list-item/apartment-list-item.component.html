@@ -3,18 +3,18 @@
 		<img [src]="apartment.teaserImageUrl" />
 	</div>
 	<div class="meta">
-		<h3 class="title">Burchardstraße 16</h3>
-		<div class="address">Sankt Pauli 20359 Hamburg</div>
+		<h3 class="title">{{apartment.title}}</h3>
+		<div class="address">{{address}}</div>
 		<div class="group">
-			<span class="rooms">rooms 3.5</span>
-			<span class="meters">79 m²</span>
+			<span class="rooms">{{apartment.details.numberOfRooms}} rooms</span>
+			<span class="meters">{{apartmentSize}}</span>
 		</div>
 		<div class="group">
-			<span class="floor">floor 2 </span>
-			<span class="price">EUR 1.671</span>
+			<span class="floor" *ngIf="apartment.details.floor">floor {{apartment.details.floor}}</span>
+			<span class="price">{{price}}</span>
 		</div>
 		<div class="actions clearfix">
-			<span class="mail">
+			<span class="mail" (click)="sendMail($event)">
 				<i class="material-icons disable-select">mail_outline</i>
 			</span>
 			<span class="favorites" style="float:right">
