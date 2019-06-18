@@ -28,7 +28,8 @@ I used the latest version of angular cli at the time - 7.3.9
   - Pipes
     -  Filter - a filter pipe to filter the provided list of objects with nested properties
   - Services
-    -  UtilitiesService - a service that has static helper functions
+    -  Http - http service to handle api calls
+    -  Data - service that uses Http service and handles api calls specific for apartments
     -  ApartmentDetailsResolver - used to resolve the route only after the getApartment call responses
     -  LoaderService / LoaderInterceptor - intercepting http requests/responses to notify the LoaderComponent when to show or hide the loader
   - Styles - App uses some global styles in styles.scss an also has a shared _apartment-list-item.scss and _colors.scss files
