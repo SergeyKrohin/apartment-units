@@ -36,4 +36,4 @@ I used the latest version of angular cli at the time - 7.3.9
   - Styles - App uses some global styles in styles.scss an also has a shared _apartment-list-item.scss and _colors.scss files
 
 # Points for improvement
-  - Types - because of the lack of time, not all the app is covered with types.
+  - Types - because of the lack of time, not everything is covered with typings
