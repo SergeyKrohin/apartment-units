@@ -25,6 +25,8 @@ I used the latest version of angular cli at the time - 7.3.9
     - ApartmentListItem - displays a specific list item with it's image and metadata
     - ApartmentDetails - a detailed view for a specific apartment
     - ItemFavorite - a star toggle to rate the item
+  - Pipes
+    -  Filter - a filter pipe to filter the provided list of objects with nested properties
   - Services
     -  UtilitiesService - a service that has static helper functions
     -  ApartmentDetailsResolver - used to resolve the route only after the getApartment call responses
