@@ -1,0 +1,20 @@
+@import "./_colors.scss";
+
+.item {
+	border: 1px solid #e2e5e8;
+	.title {
+		color: $general_blue;
+		font-weight: 400;
+	}
+	.img-wrapper {
+		position: relative;
+		img {
+			left: 0;
+			right: 0;
+			position: absolute;
+			margin: 0 auto;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+}

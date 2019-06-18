@@ -35,11 +35,9 @@ export class ApartmentListComponent implements OnInit {
 			this.location.replaceState('/list')
 			this.selectedCity = undefined;			
 		} else {
-			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_').toLowerCase()}`);
+			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_')}`);
 			this.selectedCity = e.target.value;	
-			this.streetList = this.apartmentList.filter(apartment => (
-				apartment.address.city === e.target.value
-			)).map(apartment => apartment.address.streetName);
+			this.streetList = this.getStreetsByCity(this.selectedCity);
 		}
 		this.selectedStreet = undefined;	
 	}
@@ -52,13 +50,19 @@ export class ApartmentListComponent implements OnInit {
 		}
 	}
 	
-	public getAvailable(list, property) {
+	private getAvailable(list, property) {
 		return list.reduce((available, apartment) => {
 			if (available.indexOf(apartment.address[property])  === -1) {
 				available.push(apartment.address[property]);
 			}
 			return available;
 		}, []); 
+	}
+	
+	private getStreetsByCity(cityName) {
+		return this.apartmentList.filter(apartment => (
+			apartment.address.city.toLowerCase() === cityName.toLowerCase()
+		)).map(apartment => apartment.address.streetName);
 	}
 	
 	ngOnInit() {
@@ -70,7 +74,9 @@ export class ApartmentListComponent implements OnInit {
 		this.dataService.getApartmentList().subscribe((result) => {
 			this.apartmentList = result;
 			this.citiesList = this.getAvailable(this.apartmentList, 'city');
-			this.streetList = this.getAvailable(this.apartmentList, 'streetName');
+			this.streetList = this.selectedCity ? 
+				this.getStreetsByCity(this.selectedCity) : 
+				this.streetList = this.getAvailable(this.apartmentList, 'streetName');
 		});
 	}
 	

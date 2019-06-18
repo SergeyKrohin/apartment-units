@@ -1,19 +1,19 @@
 <span class="wrapper" *ngIf="(apartmentList | filter:selectedCity:'address.city' | filter:selectedStreet:'address.streetName') as result">
 	<div class="header">
-		<h1>{{result.length}} available apartments</h1>
+		<h1 class="header-title">{{result.length}} available apartments</h1>
 		<span class="filters">
 			<span class="cities">			
 				<label for="cities">City</label>
 				<select name="cities" (change)="citySelected($event)">
 				  <option value="all">All</option>
-				  <option [selected]="city.toLowerCase() === selectedCity" *ngFor="let city of citiesList" [value]="city">{{city}}</option>
+				  <option [selected]="city === selectedCity" *ngFor="let city of citiesList" [value]="city">{{city}}</option>
 				</select>
 			</span>
 			<span class="streets">			
 				<label for="streets">Neighborhood</label>
 				<select name="streets" (change)="streetSelected($event)">
 				  <option value="all">All</option>
-				  <option [selected]="street.toLowerCase() === selectedStreet" *ngFor="let street of streetList" [value]="street">{{street}}</option>
+				  <option [selected]="street === selectedStreet" *ngFor="let street of streetList" [value]="street">{{street}}</option>
 				</select>
 			</span>
 		</span>

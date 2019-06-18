@@ -1,22 +1,22 @@
+@import "../../styles/shared/_colors.scss";
+
 $title_line_height: 36px;
 $margin_horizontal: 15px;
-$title_margin_vertical: 30px;
+$margin_vertical: 30px;
 $list_padding: 0 20px;
 $screen_max_width: 1820px;
 $screen_breakpoint_diff: 350px;
 
 .wrapper {
-
 	.header {
 		padding: $list_padding;
-		color: #357ca2;
-		h1 {
+		color: $general_blue;
+		.header-title {
 			font-weight: 400;
-			margin: $title_margin_vertical $margin_horizontal;
+			margin: $margin_vertical $margin_horizontal;
 			display: inline-block;
-			font-family: Verdana;
-			line-height: 36px;
-			font-size: 30px;
+			line-height: $title_line_height;
+			font-size: 28px;
 			width: 400px;
 		}
 		.filters {
@@ -39,7 +39,7 @@ $screen_breakpoint_diff: 350px;
 	}
 	.apartment-list {
 		padding: $list_padding;
-		height: calc(100% - #{$title_margin_vertical * 2 + $title_line_height});
+		height: calc(100% - #{$margin_vertical * 2 + $title_line_height});
 		overflow-y: auto;
 		.apartment-list-item {
 			display: inline-block;
@@ -66,12 +66,12 @@ $screen_breakpoint_diff: 350px;
 			.apartment-list-item {
 				width: calc((100% / 2) - #{$margin_horizontal * 2});
 			}
-			height: calc(100% - #{$title_margin_vertical * 3 + $title_line_height * 2});
+			height: calc(100% - #{$margin_vertical * 3 + $title_line_height * 2});
 		}
 		.header {
 			.filters {
 				display: block;
-				margin: 0 0 $title_margin_vertical $margin_horizontal;
+				margin: 0 0 $margin_vertical $margin_horizontal;
 			}
 		}
 	}
@@ -80,7 +80,7 @@ $screen_breakpoint_diff: 350px;
 			.apartment-list-item {
 				width: calc(100% - #{$margin_horizontal * 2});
 			}
-			height: calc(100% - #{$title_margin_vertical * 3 + $title_line_height * 3});
+			height: calc(100% - #{$margin_vertical * 3 + $title_line_height * 3});
 		}
 		.header {
 			.filters {

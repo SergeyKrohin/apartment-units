@@ -1,3 +1,5 @@
+@import "../../styles/shared/_colors.scss";
+
 :host {
-	color: #357ca2;
+	color: $general_blue;
 }
