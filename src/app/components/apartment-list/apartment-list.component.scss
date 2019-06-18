@@ -66,6 +66,7 @@ $screen_breakpoint_diff: 350px;
 			.apartment-list-item {
 				width: calc((100% / 2) - #{$margin_horizontal * 2});
 			}
+			height: calc(100% - #{$title_margin_vertical * 3 + $title_line_height * 2});
 		}
 		.header {
 			.filters {
@@ -79,6 +80,7 @@ $screen_breakpoint_diff: 350px;
 			.apartment-list-item {
 				width: calc(100% - #{$margin_horizontal * 2});
 			}
+			height: calc(100% - #{$title_margin_vertical * 3 + $title_line_height * 3});
 		}
 		.header {
 			.filters {
