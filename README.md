@@ -16,6 +16,7 @@ I used the latest version of angular cli at the time - 7.3.9
     - App - main module
     - Shared - imports and exports all the reusable components
     - Dashboard - module that uses the shared module, angular's built-in modules and also declares it's child componens
+    - DashboardRoutingModule - handles applications routing
     - Core - holds all the services in one place
   - Components
     - App - main component
