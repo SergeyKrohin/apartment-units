@@ -1,16 +1,22 @@
 <span class="wrapper" *ngIf="(apartmentList | filter:selectedCity:'address.city' | filter:selectedStreet:'address.streetName') as result">
 	<div class="header">
-		<h1 class="title">{{result.length}} available apartments</h1>
-		<label for="cities">City</label>
-		<select id="cities" name="cities" (change)="citySelected($event)">
-		  <option value="all">All</option>
-		  <option [selected]="city.toLowerCase() === selectedCity" *ngFor="let city of citiesList" [value]="city">{{city}}</option>
-		</select>
-		<label for="streets">Neighborhood</label>
-		<select id="streets" name="streets" (change)="streetSelected($event)">
-		  <option value="all">All</option>
-		  <option [selected]="street.toLowerCase() === selectedStreet" *ngFor="let street of streetList" [value]="street">{{street}}</option>
-		</select>
+		<h1>{{result.length}} available apartments</h1>
+		<span class="filters">
+			<span class="cities">			
+				<label for="cities">City</label>
+				<select name="cities" (change)="citySelected($event)">
+				  <option value="all">All</option>
+				  <option [selected]="city.toLowerCase() === selectedCity" *ngFor="let city of citiesList" [value]="city">{{city}}</option>
+				</select>
+			</span>
+			<span class="streets">			
+				<label for="streets">Neighborhood</label>
+				<select name="streets" (change)="streetSelected($event)">
+				  <option value="all">All</option>
+				  <option [selected]="street.toLowerCase() === selectedStreet" *ngFor="let street of streetList" [value]="street">{{street}}</option>
+				</select>
+			</span>
+		</span>
 	</div>
 	<div class="apartment-list">
 		<div class="apartment-list-item" *ngFor="let apartment of result">

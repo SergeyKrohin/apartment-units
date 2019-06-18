@@ -9,14 +9,32 @@ $screen_breakpoint_diff: 350px;
 
 	.header {
 		padding: $list_padding;
-		.title {
+		color: #357ca2;
+		h1 {
 			font-weight: 400;
 			margin: $title_margin_vertical $margin_horizontal;
 			display: inline-block;
 			font-family: Verdana;
-			color: #357ca2;
 			line-height: 36px;
 			font-size: 30px;
+			width: 400px;
+		}
+		.filters {
+		    display: inline-block;	
+			vertical-align: 4px;
+			line-height: $title_line_height;
+			label {
+				margin-right: 10px;
+			}
+			.cities {
+				select {
+					margin-right: 40px;
+				}
+			}
+			select {
+				outline: 0;
+				height: 30px;
+			}
 		}
 	}
 	.apartment-list {
@@ -49,11 +67,27 @@ $screen_breakpoint_diff: 350px;
 				width: calc((100% / 2) - #{$margin_horizontal * 2});
 			}
 		}
+		.header {
+			.filters {
+				display: block;
+				margin: 0 0 $title_margin_vertical $margin_horizontal;
+			}
+		}
 	}
 	@media screen and (max-width: #{$screen_max_width - $screen_breakpoint_diff * 3 - 80px}) {
 		.apartment-list {
 			.apartment-list-item {
 				width: calc(100% - #{$margin_horizontal * 2});
+			}
+		}
+		.header {
+			.filters {
+				.cities {
+					display: block;
+					label {
+					    margin-right: 90px;
+					}
+				}
 			}
 		}
 	}
