@@ -33,7 +33,8 @@ export class ApartmentListComponent implements OnInit {
 	public citySelected(e) {
 		if(e.target.value === 'all') {
 			this.location.replaceState('/list')
-			this.selectedCity = undefined;			
+			this.selectedCity = undefined;	
+			this.streetList = this.getAvailable(this.apartmentList, 'streetName');
 		} else {
 			this.location.replaceState(`/list/${e.target.value.replace(/ /g, '_')}`);
 			this.selectedCity = e.target.value;	
